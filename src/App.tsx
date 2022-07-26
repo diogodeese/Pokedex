@@ -2,26 +2,42 @@ import { useEffect, useState } from "react";
 import pokedex from "./assets/pokedex.png";
 
 function App() {
-  const [pokemonNumber, setPokemonNumber] = useState(0);
+  const [pokemonNumber, setPokemonNumber] = useState(1);
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonImage, setPokemonImage] = useState("");
 
-  useEffect((pokemon: number | string = 1) => {
+  function increaseNumber() {
+    setPokemonNumber(pokemonNumber + 1);
+    setPokemonName("");
+  }
+
+  function decreaseNumber() {
+    setPokemonNumber(pokemonNumber - 1);
+    setPokemonName("");
+  }
+
+  useEffect(() => {
     const fetchPokemon = async (requestedPokemon?: any) => {
       const APIResponse = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${requestedPokemon}`
       );
-      const pokemon = await APIResponse.json();
-      setPokemonNumber(pokemon.id);
-      setPokemonName(pokemon.name);
-      setPokemonImage(
-        pokemon.sprites.versions["generation-v"]["black-white"].animated
-          .front_default
-      );
+
+      if (APIResponse.status === 200) {
+        const pokemon = await APIResponse.json();
+        setPokemonNumber(pokemon.id);
+        setPokemonName(pokemon.name);
+        setPokemonImage(
+          pokemon.sprites.versions["generation-v"]["black-white"].animated
+            .front_default
+        );
+      } else {
+        setPokemonName("Not Found");
+        setPokemonNumber(0);
+      }
     };
 
-    fetchPokemon(pokemon);
-  }, []);
+    fetchPokemon(pokemonName || pokemonNumber);
+  }, [pokemonName, pokemonNumber]);
 
   return (
     <div className="mt-4 inline-block p-[15px] relative">
@@ -41,15 +57,24 @@ function App() {
           className="w-full outline-none p-[4%] text-slate-700 text-inputDynamic border-2 border-slate-700 rounded shadow-input"
           type="search"
           placeholder="Name or Number"
+          onChange={(e) => {
+            setPokemonName(e.currentTarget.value);
+          }}
           required
         />
       </form>
 
       <div className="flex gap-5 absolute bottom-[10%] left-2/4 w-[65%] translate-x-[-57%]">
-        <button className="w-2/4 p-[4%] border-2 border-black rounded text-inputDynamic text-white bg-slate-800 shadow-navigate active:text-sm active:shadow-pressed">
-          Prev &lt;
+        <button
+          className="w-2/4 p-[4%] border-2 border-black rounded text-inputDynamic text-white bg-slate-800 shadow-navigate active:text-sm active:shadow-pressed"
+          onClick={decreaseNumber}
+        >
+          &lt; Prev
         </button>
-        <button className="w-2/4 p-[4%] border-2 border-black rounded text-inputDynamic text-white bg-slate-800 shadow-navigate active:text-sm active:shadow-pressed">
+        <button
+          className="w-2/4 p-[4%] border-2 border-black rounded text-inputDynamic text-white bg-slate-800 shadow-navigate active:text-sm active:shadow-pressed"
+          onClick={increaseNumber}
+        >
           Next &gt;
         </button>
       </div>
