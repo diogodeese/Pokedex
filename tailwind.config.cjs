@@ -7,7 +7,13 @@ module.exports = {
         sans: "Oxanium, cursive",
       },
       fontSize: {
-        dynamic: "clamp(8px, 5vw, 25px)",
+        pokemonNameDynamic: "clamp(8px, 5vw, 25px)",
+        inputDynamic: "clamp(8px, 5vw, 1rem)",
+      },
+      boxShadow: {
+        input: "-3px 4px 0 #888, -5px 7px 0 #333",
+        navigate: "-2px 3px 0 #222, -4px 6px 0 #000",
+        pressed: "inset -4px 4px 0 #222",
       },
     },
   },
