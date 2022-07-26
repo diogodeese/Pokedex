@@ -10,11 +10,13 @@ function App() {
   const searchBar = useRef<HTMLInputElement>(null);
 
   function increaseNumber() {
+    setLoading(true);
     setPokemonNumber(pokemonNumber + 1);
     setPokemonName("");
   }
 
   function decreaseNumber() {
+    setLoading(true);
     setPokemonNumber(pokemonNumber - 1);
     setPokemonName("");
   }
