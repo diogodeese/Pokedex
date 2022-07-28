@@ -47,7 +47,7 @@ function App() {
   }, [pokemonName, pokemonNumber]);
 
   return (
-    <div className="mt-4 inline-block p-[15px] relative">
+    <div className="mt-5 inline-block p-[15px] relative">
       {!loading && !searchError && (
         <img
           className="absolute left-1/2 bottom-[55%] translate-x-[-63%] translate-y-[20%] h-[18%]"
