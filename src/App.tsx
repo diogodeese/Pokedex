@@ -43,7 +43,25 @@ function App() {
       }
     };
 
+    const handleKeyUp = (e: KeyboardEvent) => {
+      e.preventDefault();
+
+      e = e || window.event;
+
+      if (e.keyCode === 37) {
+        decreaseNumber(); // Left Arrow
+      } else if (e.keyCode === 39) {
+        increaseNumber(); // Right Arrow
+      }
+    };
+
     fetchPokemon(pokemonName || pokemonNumber);
+
+    document.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      document.removeEventListener("keyup", handleKeyUp);
+    };
   }, [pokemonName, pokemonNumber]);
 
   return (
