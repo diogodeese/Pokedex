@@ -22,7 +22,7 @@ function App() {
   }
 
   useEffect(() => {
-    const fetchPokemon = async (requestedPokemon?: any) => {
+    const fetchPokemon = async (requestedPokemon: String | Number) => {
       const APIResponse = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${requestedPokemon}`
       );
@@ -48,9 +48,9 @@ function App() {
 
       e = e || window.event;
 
-      if (e.keyCode === 37) {
+      if (e.key === "Arrow Left") {
         decreaseNumber(); // Left Arrow
-      } else if (e.keyCode === 39) {
+      } else if (e.key === "Arrow Right") {
         increaseNumber(); // Right Arrow
       }
     };
