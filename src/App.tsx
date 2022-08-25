@@ -46,11 +46,9 @@ function App() {
     const handleKeyUp = (e: KeyboardEvent) => {
       e.preventDefault();
 
-      e = e || window.event;
-
-      if (e.key === "Arrow Left") {
+      if (e.key === "ArrowLeft") {
         decreaseNumber(); // Left Arrow
-      } else if (e.key === "Arrow Right") {
+      } else if (e.key === "ArrowRight") {
         increaseNumber(); // Right Arrow
       }
     };
