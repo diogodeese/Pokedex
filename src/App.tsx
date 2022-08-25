@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, InputHTMLAttributes } from "react";
+import { useEffect, useState, useRef } from "react";
 import pokedex from "./assets/pokedex.png";
 
 function App() {
