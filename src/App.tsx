@@ -22,7 +22,7 @@ function App() {
   }
 
   useEffect(() => {
-    const fetchPokemon = async (requestedPokemon: String | Number) => {
+    const fetchPokemon = async (requestedPokemon: string | number) => {
       const APIResponse = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${requestedPokemon}`
       );
